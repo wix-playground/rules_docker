@@ -98,6 +98,12 @@ exports_files(["digest"])
     # Use the custom docker client config directory if specified.
     if repository_ctx.attr.docker_client_config != "":
         args += ["--client-config-dir", "{}".format(repository_ctx.attr.docker_client_config)]
+    if "docker_repository_cache" in repository_ctx.os.environ:
+        args += [
+            "--cache",
+            repository_ctx.os.environ["docker_repository_cache"]
+        ]
+
 
     # If a digest is specified, then pull by digest.  Otherwise, pull by tag.
     if repository_ctx.attr.digest:
