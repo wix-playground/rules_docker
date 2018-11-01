@@ -84,7 +84,7 @@ def repositories():
         http_file(
             name = "puller",
             urls = [("https://github.com/anchlovi/containerregistry/blob/cached-puller/puller.par?raw=true")],
-            sha256 = "06881006903f7983cac22e7f591ee059bf9cbe56a3d63063f954f2e8f9763dca",
+            sha256 = "5e275f12cbb7fad0c9b4ec16885d0cea5eb253451a689cefe310bcbfe711e082",
             executable = True,
         )
 
