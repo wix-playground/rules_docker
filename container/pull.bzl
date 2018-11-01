@@ -98,7 +98,7 @@ exports_files(["digest"])
     # Use the custom docker client config directory if specified.
     if repository_ctx.attr.docker_client_config != "":
         args += ["--client-config-dir", "{}".format(repository_ctx.attr.docker_client_config)]
-    if "docker_repository_cache" in repository_ctx.os.environ:
+    if repository_ctx.os.environ.get("docker_repository_cache"):
         args += [
             "--cache",
             repository_ctx.os.environ["docker_repository_cache"]
