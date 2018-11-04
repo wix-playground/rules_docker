@@ -100,10 +100,13 @@ exports_files(["digest"])
         args += ["--client-config-dir", "{}".format(repository_ctx.attr.docker_client_config)]
     cache_dir = repository_ctx.os.environ["docker_repository_cache"]
     if cache_dir:
-        abs_cache_dir = repository_ctx.execute(["echo \"$(cd \"$(dirname {cache_dir})\" && pwd)/$(basename {cache_dir})\"".format(cache_dir = cache_dir)])
+        cache_dir_dirname = repository_ctx.execute(["dirname", cache_dir]).stdout
+        cache_dir_name = repository_ctx.execute(["basename", cache_dir]).stdout
+        abs_cache_dir = "%s/%s" % (cache_dir_dirname, cache_dir_name)
+        cache_dir_name = repository_ctx.execute(["mkdir", "-p", cache_dir])
         args += [
             "--cache",
-            abs_cache_dir.stdout
+            abs_cache_dir
         ]
 
 
