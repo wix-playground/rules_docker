@@ -100,15 +100,13 @@ exports_files(["digest"])
         args += ["--client-config-dir", "{}".format(repository_ctx.attr.docker_client_config)]
     cache_dir = repository_ctx.os.environ["docker_repository_cache"]
     if cache_dir:
-        cache_dir_dirname = repository_ctx.execute(["dirname", cache_dir]).stdout.strip("\n")
-        cache_dir_name = repository_ctx.execute(["basename", cache_dir]).stdout.strip("\n")
-        abs_cache_dir = "%s/%s" % (cache_dir_dirname, cache_dir_name)
-        cache_dir_name = repository_ctx.execute(["mkdir", "-p", cache_dir])
+        if cache_dir.startswith('~/') and repository_ctx.os.environ["HOME"]:
+            cache_dir = cache_dir.replace('~', repository_ctx.os.environ["HOME"], 1)
+
         args += [
             "--cache",
-            abs_cache_dir
+            cache_dir
         ]
-
 
     # If a digest is specified, then pull by digest.  Otherwise, pull by tag.
     if repository_ctx.attr.digest:
