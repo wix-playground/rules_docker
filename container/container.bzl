@@ -83,8 +83,8 @@ def repositories():
     if "puller" not in excludes:
         http_file(
             name = "puller",
-            urls = [("https://github.com/anchlovi/containerregistry/blob/cached-puller/puller.par?raw=true")],
-            sha256 = "4e0b6686412980362ebfbfb99025c23925c3f4a9a808ace4b081d0057fc08a5e",
+            urls = [("https://github.com/or-shachar/containerregistry/blob/add-docker-cache-directory-bin/puller.par?raw=true")],
+            sha256 = "f630822988a2d6c75d68b6fc951831d3c24610f6760f508297c45e08f9d92a11",
             executable = True,
         )
 
