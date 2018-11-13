@@ -84,7 +84,7 @@ def repositories():
         http_file(
             name = "puller",
             urls = [("https://github.com/or-shachar/containerregistry/blob/add-docker-cache-directory-bin/puller.par?raw=true")],
-            sha256 = "f630822988a2d6c75d68b6fc951831d3c24610f6760f508297c45e08f9d92a11",
+            sha256 = "778d25df0087469e183519cdb83827b665cf0ec81ec54c2af07a304524223acb",
             executable = True,
         )
 
