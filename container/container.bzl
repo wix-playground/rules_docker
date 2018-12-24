@@ -48,7 +48,7 @@ container = struct(
 )
 
 # The release of the github.com/google/containerregistry to consume.
-CONTAINERREGISTRY_RELEASE = "v0.0.34"
+CONTAINERREGISTRY_RELEASE = "v0.0.35"
 
 _local_tool_build_template = """
 sh_binary(
@@ -83,9 +83,10 @@ def repositories():
     if "puller" not in excludes:
         http_file(
             name = "puller",
-            urls = [("https://github.com/or-shachar/containerregistry/blob/add-docker-cache-directory-bin/puller.par?raw=true")],
-            sha256 = "1de572bb67e55022a84761afd98a1e816379813f7fea548626b8bfdfa779e475",
             executable = True,
+            sha256 = "2a3ccb6ef8f99ec0053b56380824a7c100ba00eb0e147d1bda748884113542f1",
+            urls = [("https://storage.googleapis.com/containerregistry-releases/" +
+                     CONTAINERREGISTRY_RELEASE + "/puller.par")],
         )
 
     if "importer" not in excludes:
